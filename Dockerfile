@@ -1,0 +1,17 @@
+FROM ubuntu:20.04
+
+RUN apt-get update -y && apt-get install -y python3-pip  
+ENV Code="/Code"
+
+COPY requirements.txt /app/requirements.txt
+
+WORKDIR /app
+
+RUN pip3 install -r requirements.txt
+
+COPY ./app/app.py /app
+
+ENTRYPOINT ["python3", "app.py"]
+
+LABEL description="DevOps-Challenge"
+
